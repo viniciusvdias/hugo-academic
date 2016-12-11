@@ -1,6 +1,6 @@
 {{ $ := .root }}
 {{ $page := .page }}
-{{ $pubs_len := len (where $.Data.Pages "Type" "publication") }}
+{{ $pubs_len := len (where $.Data.Pages "Type" "talk") }}
 
 <!-- Publications widget -->
 <div class="row">
@@ -9,7 +9,7 @@
     {{ with $page.Params.subtitle }}<p>{{ . | markdownify }}</p>{{ end }}
     {{ if gt $pubs_len $page.Params.count }}
     <p class="view-all">
-      <a href="{{ $.Site.BaseURL }}publication/">
+      <a href="{{ $.Site.BaseURL }}talk/">
         {{ with $page.Params.str_all }}{{ . | markdownify }}{{ end }}
         <i class="fa fa-angle-double-right"></i>
       </a>
@@ -17,15 +17,14 @@
     {{ end }}
   </div>
   <div class="col-xs-12 col-md-8">
-   <h4>Selected Publications</h4>
 
     {{ if $page.Params.detailed_list }}
-    {{ range first $page.Params.count (where $.Data.Pages "Type" "publication") }}
+    {{ range first $page.Params.count (where $.Data.Pages "Type" "talk") }}
     {{ partial "publication_li_detailed" . }}
     {{ end }}
     {{ else }}
     <ul class="fa-ul">
-      {{ range first $page.Params.count (where $.Data.Pages "Type" "publication") }}
+      {{ range first $page.Params.count (where $.Data.Pages "Type" "talk") }}
       {{ partial "publication_li_simple" . }}
       {{ end }}
     </ul>
